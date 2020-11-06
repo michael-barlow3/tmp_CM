@@ -601,3 +601,5 @@ Both of which are, by necessity, developed differently.
 [GitHub Repository Naming Convention](https://github.com/department-of-veterans-affairs/configuration-management/wiki/3.04-GitHub-Repository-Naming-Convention)
 
 Configure the repository as outlined in the [VA Repository Settings](https://github.com/department-of-veterans-affairs/configuration-management/wiki/3.06-Configuring-Repository-Settings) guide
+
+This is a test comment by Keith Avery.
