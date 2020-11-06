@@ -6,22 +6,17 @@
 
 VistA MUMPS Code starts with the platinum version of code.
 
-This becomes the  Main branch
-This branch should be tagged according to the [Semantic Versioning](https://semver.org/) standard as well as tagged with a MUMPS Identifier (Keith?)
-
-
-
 ## Branches
 
 --- Describe what a branch is ---
 
 ### Main - Long Lived
 
-Created from the Gold version of the product
+Created from the Platinum/Gold(??) version of the product
 
 ### Dev - Long Lived
 
-Branch from Main
+Branch from created from main
 
 ### Patch - Short Lived
 
@@ -175,7 +170,7 @@ See also: #456, #789
 
 A tag is a way to mark a point in time in the repository. Typically tags are used to mark a release version of the repository. [Tags are not the same as branches](https://en.wikibooks.org/wiki/Git/Advanced#:~:text=The%20difference%20between%20tags%20and,and%20usually%20not%20be%20changed).
 
-While there are 2 types of tags (lightweight and annotated), annotated tags should always be used. Lightweight tags simply list the [semantic version](https://semver.org/) of the release (or in the case of VistA a tag can be the VistA Patch #), while annotated tags give not only the version of the release but also who created the tag, when it was created (which may or may not be the same person/date of the branch it's pointing to) and any message (similar to a commit message) the tagger attributed to the tag. For more information on Git Tagging, check out the [Git Basics Tagging](https://git-scm.com/book/en/Git-Basics-Tagging) page.
+While there are 2 types of tags (lightweight and annotated), annotated tags should always be used. Lightweight tags simply list the [semantic version](https://semver.org/) of the release (or in the case of VistA a tag can be the VistA patch # *Note: VistA patches do not make use of the [Semantic Versioning](https://semver.org/) standard*) while annotated tags give not only the version of the release but also who created the tag, when it was created (which may or may not be the same person/date of the branch it's pointing to) and any message (similar to a commit message) the tagger attributed to the tag. For more information on Git Tagging, check out the [Git Basics Tagging](https://git-scm.com/book/en/Git-Basics-Tagging) page.
 
 giving a high level overview of what is being committed (Patch # and Test Version #)
 
@@ -194,6 +189,18 @@ $ git tag -a DG-5.3-342-V4 -m
 ```
 $ git tag -a XYZ-1-100-V1 -m "Both DG-5.3-342 and XYZ-1-100 are mutually dependent upon each other"
 ```
+
+*In the case of patches being dependent upon other patches the patch installation sequence # should be added to the tag as well????* ***NO - Because Seq# does not change per code changes***
+
+
+
+## Repository Folder Structure
+
+Readme.md (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/products/va-mobile-app/README.md))
+
+Testing (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/tree/master/products/va-mobile-app/testing))
+
+
 
 
 
@@ -221,21 +228,35 @@ $ git tag -a DG-5.3-342-V1 -m "Add first test version of this patch"
 
 
 
-Patch-tracking message (See: National Patch Module Guide for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator. (*Should Patch-tracking message be stored in GitHub?*)
+Patch-tracking message (See: National Patch Module Guide for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator. 
 
-VistA SQA Checklist completed for each test version
+*Prior to merging the changes back into main, the final thread of the Patch-tracking message be stored in GitHub.*
 
+*Prior to merging the changes back into main, the final thread of the Release Message should also be stored in GitHub.*
 
+The VistA SQA Checklist should be updated for each test version and be included in the test folder of the patch.
 
-Release Coordinator (RC) has the role of Verifier and is responsible for merging back into Main
+### Roles:
 
+*Note: All roles listed and defined in the Application Team's Readme*  
 
+Product support release coordinator...
 
+- Application Coordinator (AC) - Owner of the main branch - Responsible for approving/merging code back into main branch upon national release
 
+  - Also owner of the dev branch - Responsible for approving/merging code back into dev branch prior to IOC testing
+
+- Team Lead (TL) - responsible for oversight and management of the overall development process of the patch
+
+- Lead Developer (LD) - Responsible for ensuring the PDRC and SDRC are completed and included in the "CheckList" folder, Coordinating with LD's of other overlapping patches.
+
+  The LD is also responsible for creating the "short lived" patch branch as well as verifying  changes before issuing a pull request to merge the changes back into dev upon completion of the development changes.
+
+- SQA Manager - Responsible for ensuring the proper Test Definition documents (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/tree/master/products/va-mobile-app/testing)) in the Applications "Test" folder
 
 and the code is ready for SQA testing, 
 
-![Single Patch](cm-cap-readme.assets/Single%20Patch.svg)
+![Single Patch](README.assets/Single%20Patch.svg)
 
 In committing the addition of the KIDS build to the local Patch also tag the commit with an annotated tag which should include the Patch Number as well as the Test Version (see [Tags](#tags)).
 
@@ -275,7 +296,7 @@ Then a new  Dev branch is created by the development team leader with a tag spec
 
 The development team leader should also monitor the Main branch for any changes made by other development teams and pull any changes down to the Dev branch and inform the rest of the team of the changes.
 
-![VistA Git Flow - Page 1](cm-cap-readme.assets/VistA%20Git%20Flow%20-%20Page%201-1603811747515.svg)
+![Single Patch Old](README.assets/Single%20Patch%20Old.svg)
 
 From the new  Dev branch a   Patch/Fix branch is created and tagged according to the JIRA task #
 
@@ -289,7 +310,7 @@ Once the code is ready for testing it should be pushed into FORUM by the develop
 
 
 
-![VistA Git Flow - Page 2](cm-cap-readme.assets/VistA%20Git%20Flow%20-%20Page%202-1603814865027.svg)
+![Single Patch Old  2](README.assets/Single%20Patch%20Old%20%202.svg)
 
 
 
@@ -299,7 +320,7 @@ If, during SQA testing any defects are discovered a new tag must be added to the
 
 A KIDS build based on the Dev branch is loaded into FORUM.
 
-![VistA Git Flow - Page 3](cm-cap-readme.assets/VistA%20Git%20Flow%20-%20Page%203-1603814968382.svg)
+![Single Patch Old  3](README.assets/Single%20Patch%20Old%20%203.svg)
 
 Once SQA has given final approval of the Patch/Fix, a new Release branch is created from the Dev branch. The code is pulled from FORUM for PreProd/IOC testing and when approved a pull request is issued from the Release branch back into the Main branch.
 
@@ -400,7 +421,17 @@ A “gold” instance for use in comparing to the  development instance. (PATVEE
 
    Gold version is all packages
 
-![2Patches](cm-cap-readme.assets/2Patches.svg)
+OLD VERSION VVVVVVVVVVVVVVVVVVVVVVVVVV
+
+![2Patches](README.assets/2Patches.svg)
+
+OLD VERSION ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
+![Mutually Dependent Patches](README.assets/Mutually%20Dependent%20Patches.svg)
 
 
 
