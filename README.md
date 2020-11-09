@@ -8,15 +8,15 @@ VistA MUMPS Code starts with the platinum version of code.
 
 ## Branches
 
---- Describe what a branch is ---
+A **branch** is essentially is a unique set of code changes with a unique name. Each repository can have one or more **branches**. The main branch — the one where all changes eventually get merged back into is the official release version of the code and the one you see when you visit the product repository at **github.com**/department-of-veterans-affairs/productname. Do not mess with the main branch. This is locked down and should only be updated by *"The One"*.
 
 ### Main - Long Lived
 
-Created from the Platinum/Gold(??) version of the product
+Protected Branch created from the Platinum/Gold(??) version of the product
 
 ### Dev - Long Lived
 
-Branch from created from main
+Protected Branch created from main
 
 ### Patch - Short Lived
 
@@ -41,6 +41,10 @@ Used for Final IOC testing
 ---
 
 *Notes:* 
+
+- Is there a single CAPL Repository which contains information on all the products in the CAP line? (if not there should be)
+- Each product in CAPL should have a folder under the CAPL Repository which describes the product and components of the product as well as a link to that product's Repo.
+
 *Protect the branches - Settings; Branches;* 
 *Default branch should be production branch*
 *Branch Protection Rules*
@@ -239,21 +243,24 @@ At this point the Patch branch should be tagged with an annotated tag (see [Tags
 $ git tag -a DG-5.3-342-V1 -m "Add first test version of this patch"
 ```
 
-Patch-tracking message (See: National Patch Module Guide for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator. 
+Patch-tracking message (See: National Patch Module Guide for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator (Again see the README in the appropriate product repo to identify the Product Support Release Coordinator). 
 
-*Prior to merging the changes back into main, the final thread of the Patch-tracking message be stored in GitHub.*
+*Prior to merging the changes back into main, the final thread of the **Patch-tracking Message** be stored in GitHub.*
 
-*Prior to merging the changes back into main, the final thread of the Release Message should also be stored in GitHub.*
+*Prior to merging the changes back into main, the final thread of the **Release Message** should also be stored in GitHub.*
 
-The VistA SQA Checklist should be updated for each test version and be included in the test folder of the patch.
+The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
 ![Single Patch](README.assets/Single%20Patch.svg)
 
 In committing the addition of the KIDS build to the local Patch also tag the commit with an annotated tag which should include the Patch Number as well as the Test Version (see [Tags](#tags)).
 
-Once committed and pushed to the GitHub repository, a Pull Request should be made to merge the current changes into the Dev branch. Once the changes have been merged into Dev the code should be sent to FORUM for testing by SQA.
+Once committed and pushed to the GitHub repository, a Pull Request should be made by the **lead developer** to merge the current changes into the Dev branch. The **Product SME** (Subject Matter Expert) is responsible for approving the pull request. Once the changes have been merged into Dev the code should be sent to FORUM for testing by SQA.
 
-
+- **Developer** issues PR from Patch to Dev - When all local/unit testing is complete.
+- **Product SME** approves merge from Patch to Dev - When ready for SQA testing
+- **Product SME** issues PR from Dev to Main - When all development/local testing is complete
+- **Release Coordinator**  (aka *"The One"*) approves merge into Main - Ready for National Release
 
 
 
@@ -269,11 +276,7 @@ Once committed and pushed to the GitHub repository, a Pull Request should be mad
 
    NOTE: Combined builds should be used judiciously. Combining multiple patches that depend on one specific patch but not on each other may create risks in testing and deployment. When doing a combined build, consultation with the ***Release Coordinator*** is required. If uncertain, consultation with a ***package expert*** is warranted.
 
-
-
 ![Mutually Dependent Patches](README.assets/Mutually%20Dependent%20Patches.svg)
-
-
 
 Patch 1 branch devs work on package DG (Registration name space)
 
