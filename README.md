@@ -4,37 +4,49 @@
 
 ## VistA MUMPS Code
 
-VistA MUMPS Code starts with the platinum version of code.
+The base source code for VistA MUMPS is the platinum version maintained by the XXX.
 
 ## Branches
 
-A **branch** is essentially is a unique set of code changes with a unique name. Each repository can have one or more **branches**. The main branch — the one where all changes eventually get merged back into is the official release version of the code and the one you see when you visit the product repository at **github.com**/department-of-veterans-affairs/productname. Do not mess with the main branch. This is locked down and should only be updated by *"The One"*.
+A **branch** is essentially is a unique set of code changes with a unique name. Each repository can have one or more **branches**. The master branch — the one where all changes eventually get merged back into is the official release version of the code and the one you see when you visit the product repository at **github.com**/department-of-veterans-affairs/productname. Code should not be published directly to the master branch. This branch should only be updated from a lower branch where the code has been tested and found to be free of defects (see additional details below)
 
-### Main - Long Lived
+Master -> Preprod -> IOC -> SQA -> Dev -> Local Clone
 
-Protected Branch created from the Platinum/Gold(??) version of the product
+### Master - Long Lived
 
-### Dev - Long Lived
+Protected Branch created from the Platinum version of the product
 
-Protected Branch created from main
+### Preprod - Long Lived
 
-### Patch - Short Lived
+Protected Branch created from the Master branch
 
-Branch from Dev; Named according to the Patch being worked on using the "Patch-*" convention
+### IOC- Short Lived
+
+Branch from Preprod; Named according to the Patch being worked on using the "<Patch#>-ioc" convention
 
 Created as needed and deleted when finished
 
-When Patch is committed back to Dev it should be tagged with an [annotated tag](#tags) 
+When Patch is committed back to Preprod it should be tagged with an [annotated tag](#tags) 
 
-### Hot Fix - Short Lived
+### SQA - Short Lived
 
-Branch from Dev; Named according to the defect being addressed using the "Fix-*" convention where the JIRA Tag for the defect is part of the name (e.g. Fix-1356)
+Branch from IOC branch; Named according to the defect being addressed using the "<Patch#>-sqa" convention Created as needed and deleted when finished
 
-### Pre-Prod - Short Lived
+When Patch is committed back to Preprod it should be tagged with an [annotated tag](#tags) 
+
+### Dev- Short Lived
+
+Branch from SQA branch; Named according to the defect being addressed using the "<Patch#>-dev" convention Created as needed and deleted when finished
+
+When Patch is committed back to Preprod it should be tagged with an [annotated tag](#tags) 
+
+### Clone - Short Lived
 
 Branch from Dev after Patch has been merged back into Dev
 
 Used for Final IOC testing
+
+
 
 
 
@@ -44,6 +56,12 @@ Used for Final IOC testing
 
 - Is there a single CAPL Repository which contains information on all the products in the CAP line? (if not there should be)
 - Each product in CAPL should have a folder under the CAPL Repository which describes the product and components of the product as well as a link to that product's Repo.
+
+In Product Repository Readme specify the Configuration Management system
+
+Documentation split from code  so code is pure 
+
+***Each Name space has it's own repository***
 
 *Protect the branches - Settings; Branches;* 
 *Default branch should be production branch*
@@ -55,6 +73,9 @@ Used for Final IOC testing
 *wild card rule for branches with a name pattern*
 *release-\* <-- Any branch starting with "release-\**
 *Manage Access* 
+
+Readme.md (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/products/va-mobile-app/README.md))
+Testing (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/tree/master/products/va-mobile-app/testing))
 
 ---
 
@@ -99,6 +120,7 @@ Properly written commit messages can significantly help to analyze the history o
   - Body - More detailed description of the commit which can be multiple paragraphs and include standard markdown (if the commit is small enough the body may not be needed as the subject should be informative enough)
   - Closing - Additional useful meta-data (JIRA ticket numbers, additional reference links, additional developers information)
 - Specify the type of commit using a Standard Terminology for the subject line
+- First word should be the commit #
 
 
 | First Word | Meaning                                              |
@@ -134,7 +156,7 @@ Properly written commit messages can significantly help to analyze the history o
 
 - Do not think your code is self-explanatory
 
-- Issue/JIRA tracking references should be put at the bottom of the commit body
+- Issue/JIRA tracking references should be put at the bottom of the commit body <--- ***Should be the first word in the commit message***
 
 
 | First Word | Meaning                                                      |
@@ -143,10 +165,10 @@ Properly written commit messages can significantly help to analyze the history o
 | Closes     | Issue # referenced her been confirmed fixed by QA            |
 | See Also   | Issue #'s referenced refer to other issues this commit addresses |
 
-Sample commit message with subject and body:
+Sample commit message with subject and body ***(Specify Ticket # - Change Management System should be listed in Product Readme)***:
 
 ```
-Derezz the master control program
+#123 Resolves - Derezz the master control program
 
  - MCP (Master Control Program) has been derezzing other programs
  
@@ -165,7 +187,9 @@ See also: #456, #789
 
 
 
-  ## Tags
+  ## Tags - Section needs more work
+
+***Use tags with PR and Release in GitHub not Merge.*** 
 
 A tag is a way to mark a point in time in the repository. Typically tags are used to mark a release version of the repository. [Tags are not the same as branches](https://en.wikibooks.org/wiki/Git/Advanced#:~:text=The%20difference%20between%20tags%20and,and%20usually%20not%20be%20changed).
 
@@ -193,15 +217,11 @@ $ git tag -a XYZ-1-100-V1 -m "Both DG-5.3-342 and XYZ-1-100 are mutually depende
 
 
 
-## Repository Folder Structure
-
-Readme.md (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/products/va-mobile-app/README.md))
-
-Testing (see [Example](https://github.com/department-of-veterans-affairs/va.gov-team/tree/master/products/va-mobile-app/testing))
+---
 
 ### Roles
 
-*Note: All roles listed and defined in the Application Team's Readme*  
+*Note: All roles listed and defined in the Application Product Team's Readme*  
 
 Product support release coordinator...
 
@@ -243,24 +263,52 @@ At this point the Patch branch should be tagged with an annotated tag (see [Tags
 $ git tag -a DG-5.3-342-V1 -m "Add first test version of this patch"
 ```
 
-Patch-tracking message (See: National Patch Module Guide for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator (Again see the README in the appropriate product repo to identify the Product Support Release Coordinator). 
+Patch-tracking message (See: ***National Patch Module Guide*** (NPM) for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator (Again see the README in the appropriate product repo to identify the Product Support Release Coordinator). 
 
-*Prior to merging the changes back into main, the final thread of the **Patch-tracking Message** be stored in GitHub.*
+*Prior to merging the changes back into main, the final thread of the **Patch-tracking Message** be stored in GitHub.* ***<-- Put this in product repository  (or better yet include these as part of the GitHub release package)***
 
-*Prior to merging the changes back into main, the final thread of the **Release Message** should also be stored in GitHub.*
+Prior to merging the changes back into main, the final thread of the **Release Message** should also be stored in GitHub.**<-- Put this in product repository** ***(or better yet include these as part of the GitHub release package)***
 
 The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
-![Single Patch](README.assets/Single%20Patch.svg)
+![Git Flow V1](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\Git Flow V1.svg)
+
+
+
+
+
+Developers clone the Dev branch to their local development environment.
+
+Developers push their changes to the dev branch
+
+
+
+
+
+***Dev becomes pre prod for documentation - Include Pre-Prod branch***
+
+Prior to issuing a Pull Request to a higher level branch, a pull from the preprod branch is made to ensure any changes pushed by other developers is merged into the developers environment. 
 
 In committing the addition of the KIDS build to the local Patch also tag the commit with an annotated tag which should include the Patch Number as well as the Test Version (see [Tags](#tags)).
 
-Once committed and pushed to the GitHub repository, a Pull Request should be made by the **lead developer** to merge the current changes into the Dev branch. The **Product SME** (Subject Matter Expert) is responsible for approving the pull request. Once the changes have been merged into Dev the code should be sent to FORUM for testing by SQA.
+Once committed and pushed to the GitHub repository, a Pull Request should be made by the **lead developer** to merge the current changes into the Dev branch. The **Product SME** (Subject Matter Expert) is responsible for approving the pull request. Once the changes have been merged into Dev the code should be sent to FORUM for testing by SQA. At this stage another Pull Request is made  to push the changes up to the SQA branch for testing. Any defects are addressed and any additional code changes are then 
+
+If no defects are detected during SQA testing then a pull request is issued back up to the IOC branch.
+
+
+
+
+
+
+
+
+
+
 
 - **Developer** issues PR from Patch to Dev - When all local/unit testing is complete.
-- **Product SME** approves merge from Patch to Dev - When ready for SQA testing
+- **Product SME** approves merge from Dev to SQA When ready for SQA testing
 - **Product SME** issues PR from Dev to Main - When all development/local testing is complete
-- **Release Coordinator**  (aka *"The One"*) approves merge into Main - Ready for National Release
+- **Release Coordinator**  (aka *"The One"* also known as **AC - Application Coordinator**) approves merge into Main - Ready for National Release
 
 
 
@@ -276,7 +324,11 @@ Once committed and pushed to the GitHub repository, a Pull Request should be mad
 
    NOTE: Combined builds should be used judiciously. Combining multiple patches that depend on one specific patch but not on each other may create risks in testing and deployment. When doing a combined build, consultation with the ***Release Coordinator*** is required. If uncertain, consultation with a ***package expert*** is warranted.
 
-![Mutually Dependent Patches](README.assets/Mutually%20Dependent%20Patches.svg)
+![VistA Git-Flow - Page 2](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\VistA Git-Flow - Page 2.svg)
+
+
+
+
 
 Patch 1 branch devs work on package DG (Registration name space)
 
