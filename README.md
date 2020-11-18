@@ -271,7 +271,7 @@ Prior to merging the changes back into main, the final thread of the **Release M
 
 The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
-![Git Flow](/README.assets/Git%20Flow%20V1.svg)
+![Git Flow V1](/README.assets/VistA%20Git-Flow%20V1.svg)
 
 Developers clone the Dev branch to their local development environment.
 
@@ -314,9 +314,7 @@ If no defects are detected during SQA testing then a pull request is issued back
 
    NOTE: Combined builds should be used judiciously. Combining multiple patches that depend on one specific patch but not on each other may create risks in testing and deployment. When doing a combined build, consultation with the ***Release Coordinator*** is required. If uncertain, consultation with a ***package expert*** is warranted.
 
-![VistA Git-Flow - Page 2](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\README.assets\VistA Git-Flow - Page 2.svg)
-
-
+![Git Flow V2](/README.assets/VistA%20Git-Flow%20V2.svg)
 
 Patch 1 branch devs work on package DG (Registration name space)
 
