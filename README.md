@@ -1,7 +1,3 @@
----
-typora-copy-images-to: README.assets
----
-
 # Configuration Management for
 
 # Clinical Ancillary Product Line 
@@ -275,11 +271,7 @@ Prior to merging the changes back into main, the final thread of the **Release M
 
 The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
-![Git Flow V1](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\README.assets\Git Flow V1.svg)
-
-
-
-
+![Git Flow](/README.assets/Git%20Flow%20V1.svg)
 
 Developers clone the Dev branch to their local development environment.
 
