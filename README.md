@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: README.assets
+---
+
 # Configuration Management for
 
 # Clinical Ancillary Product Line 
@@ -271,7 +275,7 @@ Prior to merging the changes back into main, the final thread of the **Release M
 
 The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
-![Git Flow V1](README.assets\Git Flow V1.svg)
+![Git Flow V1](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\README.assets\Git Flow V1.svg)
 
 
 
@@ -312,21 +316,13 @@ If no defects are detected during SQA testing then a pull request is issued back
 
 
 
-
-
-
-
-
-
 ### Example 3: Two patches from different packages must be installed together for both to function properly
 
    If two patches have to be installed together, create them in a combined build. For example XYZ-1-100 and DG-5.3-342 are mutually dependent upon each other. Each would be in it's own Patch Branch (Patch 1 and Patch 2 in the diagram below). Which would need to be merged as part of SQA prior to testing.
 
    NOTE: Combined builds should be used judiciously. Combining multiple patches that depend on one specific patch but not on each other may create risks in testing and deployment. When doing a combined build, consultation with the ***Release Coordinator*** is required. If uncertain, consultation with a ***package expert*** is warranted.
 
-![VistA Git-Flow - Page 2](README.assets\VistA Git-Flow - Page 2.svg)
-
-
+![VistA Git-Flow - Page 2](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\README.assets\VistA Git-Flow - Page 2.svg)
 
 
 
