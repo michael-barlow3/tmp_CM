@@ -260,18 +260,18 @@ The developer should complete the Primary Developer Review Checklist (PDRC) and 
 At this point the Patch branch should be tagged with an annotated tag (see [Tags](#tags)), containing the Patch # and Test Version # 
 
 ```
-$ git tag -a DG-5.3-342-V1 -m "Add first test version of this patch"
+$ git tag -a DG-5.3-342-V1 -m "#1345 Add first test version of this patch"
 ```
 
 Patch-tracking message (See: ***National Patch Module Guide*** (NPM) for details) sending the message on FORUM to test sites and the appropriate Product Support Release Coordinator (Again see the README in the appropriate product repo to identify the Product Support Release Coordinator). 
 
-*Prior to merging the changes back into main, the final thread of the **Patch-tracking Message** be stored in GitHub.* ***<-- Put this in product repository  (or better yet include these as part of the GitHub release package)***
+*Prior to merging the changes back into main, the final thread of the **Patch-tracking Message** should be stored in the GitHub Product Repository (and possibly the release package?).*
 
-Prior to merging the changes back into main, the final thread of the **Release Message** should also be stored in GitHub.**<-- Put this in product repository** ***(or better yet include these as part of the GitHub release package)***
+Prior to merging the changes back into main, the final thread of the **Release Message** should be stored in the GitHub Product Repository as part of the release package.
 
 The ***VistA SQA Checklist*** should be updated for each test version and be included in the test folder of the patch.
 
-![Git Flow V1](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\Git Flow V1.svg)
+![Git Flow V1](README.assets\Git Flow V1.svg)
 
 
 
@@ -324,7 +324,7 @@ If no defects are detected during SQA testing then a pull request is issued back
 
    NOTE: Combined builds should be used judiciously. Combining multiple patches that depend on one specific patch but not on each other may create risks in testing and deployment. When doing a combined build, consultation with the ***Release Coordinator*** is required. If uncertain, consultation with a ***package expert*** is warranted.
 
-![VistA Git-Flow - Page 2](H:\Users\Administrator\Documents\dbITPro - Projects\10_2020_CAP CM\tmp_CM\VistA Git-Flow - Page 2.svg)
+![VistA Git-Flow - Page 2](README.assets\VistA Git-Flow - Page 2.svg)
 
 
 
